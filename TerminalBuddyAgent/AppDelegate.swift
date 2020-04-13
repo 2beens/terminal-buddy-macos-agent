@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             button.action = #selector(togglePopover(_:))
         }
         
-        var request = URLRequest(url: URL(string: "ws://localhost:8080/connect")!)
+        var request = URLRequest(url: URL(string: "http://localhost:8080/connect")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
