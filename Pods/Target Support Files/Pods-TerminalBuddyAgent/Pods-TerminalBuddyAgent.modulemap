@@ -1,0 +1,6 @@
+framework module Pods_TerminalBuddyAgent {
+  umbrella header "Pods-TerminalBuddyAgent-umbrella.h"
+
+  export *
+  module * { export * }
+}

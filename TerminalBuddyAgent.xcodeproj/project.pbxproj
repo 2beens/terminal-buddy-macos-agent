@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,9 +12,11 @@
 		52555AEA243522D0006E38C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52555AE9243522D0006E38C8 /* Assets.xcassets */; };
 		52555AED243522D0006E38C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52555AEC243522D0006E38C8 /* Preview Assets.xcassets */; };
 		52555AF0243522D0006E38C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52555AEE243522D0006E38C8 /* Main.storyboard */; };
+		7521595C82671C02781C2FEA /* Pods_TerminalBuddyAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TerminalBuddyAgent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52555AE2243522CD006E38C8 /* TerminalBuddyAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalBuddyAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52555AE5243522CD006E38C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52555AE7243522CD006E38C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +25,8 @@
 		52555AEF243522D0006E38C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52555AF1243522D0006E38C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52555AF2243522D0006E38C8 /* TerminalBuddyAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TerminalBuddyAgent.entitlements; sourceTree = "<group>"; };
+		7C2568FADDA63565FFEC0C24 /* Pods-TerminalBuddyAgent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerminalBuddyAgent.release.xcconfig"; path = "Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent.release.xcconfig"; sourceTree = "<group>"; };
+		B9BF9B4BD9D04B70CA7C8D06 /* Pods-TerminalBuddyAgent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerminalBuddyAgent.debug.xcconfig"; path = "Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7521595C82671C02781C2FEA /* Pods_TerminalBuddyAgent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +46,8 @@
 			children = (
 				52555AE4243522CD006E38C8 /* TerminalBuddyAgent */,
 				52555AE3243522CD006E38C8 /* Products */,
+				F2A58DEF6CCF50046B51BF32 /* Pods */,
+				F12D2BF2FCCE15B06F694B66 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +81,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F12D2BF2FCCE15B06F694B66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2A58DEF6CCF50046B51BF32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9BF9B4BD9D04B70CA7C8D06 /* Pods-TerminalBuddyAgent.debug.xcconfig */,
+				7C2568FADDA63565FFEC0C24 /* Pods-TerminalBuddyAgent.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52555AF5243522D0006E38C8 /* Build configuration list for PBXNativeTarget "TerminalBuddyAgent" */;
 			buildPhases = (
+				851C10AC76289C69C481932D /* [CP] Check Pods Manifest.lock */,
 				52555ADE243522CD006E38C8 /* Sources */,
 				52555ADF243522CD006E38C8 /* Frameworks */,
 				52555AE0243522CD006E38C8 /* Resources */,
+				590B845D10E6423DD944A925 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +165,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		590B845D10E6423DD944A925 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		851C10AC76289C69C481932D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TerminalBuddyAgent-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52555ADE243522CD006E38C8 /* Sources */ = {
@@ -279,9 +347,11 @@
 		};
 		52555AF6243522D0006E38C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9BF9B4BD9D04B70CA7C8D06 /* Pods-TerminalBuddyAgent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TerminalBuddyAgent/TerminalBuddyAgent.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TerminalBuddyAgent/Preview Content\"";
@@ -296,15 +366,18 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = de.serjspends.terminalbuddy.agent.TerminalBuddyAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		52555AF7243522D0006E38C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C2568FADDA63565FFEC0C24 /* Pods-TerminalBuddyAgent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TerminalBuddyAgent/TerminalBuddyAgent.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"TerminalBuddyAgent/Preview Content\"";
@@ -319,6 +392,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = de.serjspends.terminalbuddy.agent.TerminalBuddyAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
