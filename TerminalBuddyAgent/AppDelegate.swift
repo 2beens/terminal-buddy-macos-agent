@@ -10,6 +10,19 @@ import Cocoa
 import SwiftUI
 import Starscream
 
+extension Encodable {
+    var convertToString: String? {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        do {
+            let jsonData = try jsonEncoder.encode(self)
+            return String(data: jsonData, encoding: .utf8)
+        } catch {
+            return nil
+        }
+    }
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
     var socket: WebSocket!
@@ -61,6 +74,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
         }
     }
     
+    struct InitData: Codable {
+        var username: String
+        var password: String
+    }
+
     // MARK: - WebSocketDelegate
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
@@ -70,8 +88,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             print("websocket is connected: \(headers)")
             showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
 
-            socket.write(string: "Hello from macOS app <3") {
-                print("sent a message to server")
+            // TODO: read password from app data
+            let initData = InitData(username: "serj", password: "d21992b8787fdbb8032eddbb2d81bccc")
+            let initDataJson = initData.convertToString!
+
+            print("sending init data: " + initDataJson)
+
+            socket.write(string: initDataJson) {
+                print("sent an init message to server")
             }
         case .disconnected(let reason, let code):
             isConnected = false
