@@ -41,13 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             button.action = #selector(togglePopover(_:))
         }
         
-        var request = URLRequest(url: URL(string: "http://localhost:8080/connect")!)
-        request.timeoutInterval = 5
+        let serverAddress = "ws://localhost:8080/connect"
+        print("connecting to " + serverAddress)
+        var request = URLRequest(url: URL(string: serverAddress)!)
+        request.timeoutInterval = 4
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
-        
-        // showNotification(title: "term buddy test", subtitle: "test message")
+        print("connect initiated ...")
     }
     
     @objc func togglePopover(_ sender: AnyObject?) {
@@ -65,9 +66,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
         switch event {
         case .connected(let headers):
             isConnected = true
+
             print("websocket is connected: \(headers)")
+            showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
+
+            socket.write(string: "aaaa") {
+                print("sent a message to server")
+            }
         case .disconnected(let reason, let code):
             isConnected = false
+            showNotification(title: "Terminal Buddy", subtitle: "Disconnected from server")
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
             print("Received text: \(string)")
@@ -75,16 +83,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
         case .binary(let data):
             print("Received data: \(data.count)")
         case .ping(_):
+            print("received ping")
             break
         case .pong(_):
+            print("received pong")
             break
         case .viabilityChanged(_):
             break
         case .reconnectSuggested(_):
             break
         case .cancelled:
+            print("received cancelled")
             isConnected = false
         case .error(let error):
+            print("received error event")
             isConnected = false
             handleError(error)
         }
