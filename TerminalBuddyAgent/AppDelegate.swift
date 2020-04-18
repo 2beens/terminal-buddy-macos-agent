@@ -70,7 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             print("websocket is connected: \(headers)")
             showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
 
-            socket.write(string: "aaaa") {
+            socket.write(string: "Hello from macOS app <3") {
                 print("sent a message to server")
             }
         case .disconnected(let reason, let code):
