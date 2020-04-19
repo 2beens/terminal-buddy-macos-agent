@@ -10,24 +10,13 @@ import Cocoa
 import SwiftUI
 import Starscream
 
-extension Encodable {
-    var convertToString: String? {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try jsonEncoder.encode(self)
-            return String(data: jsonData, encoding: .utf8)
-        } catch {
-            return nil
-        }
-    }
-}
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
     var socket: WebSocket!
     var isConnected = false
     let server = WebSocketServer()
+
+    var initData: InitData?
 
     // taken from:
     // https://medium.com/@acwrightdesign/creating-a-macos-menu-bar-application-using-swiftui-54572a5d5f87
@@ -35,6 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
     
+    // TODO: should be in some other place (i guess)
+    struct InitData: Codable {
+        var username: String
+        var password: String
+    }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
@@ -54,6 +49,36 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             button.action = #selector(togglePopover(_:))
         }
         
+        if getInitData() {
+            connect()
+        } else {
+            let alert = NSAlert()
+            alert.messageText = "User data empty / corrupted"
+            alert.informativeText = """
+                User data folder/file is empty or messed up.
+                Use Terminal Buddy Commander to register/login,
+                    and come back.
+            """
+            alert.runModal()
+        }
+    }
+
+    func getInitData() -> Bool {
+        do {
+            let userDataStr = try String(contentsOfFile: "/Users/serj/Library/Preferences/terminal-buddy/term-buddy-settings")
+            let userData = userDataStr.components(separatedBy: "::")
+            if userData.count == 2 {
+                initData = InitData(username: userData[0], password: userData[1])
+                return true
+            }
+        }
+        catch {
+            print("Error reading user data: \(error).")
+        }
+        return false
+    }
+
+    func connect() {
         let serverAddress = "ws://localhost:8080/connect"
         print("connecting to " + serverAddress)
         var request = URLRequest(url: URL(string: serverAddress)!)
@@ -74,11 +99,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
         }
     }
     
-    struct InitData: Codable {
-        var username: String
-        var password: String
-    }
-
     // MARK: - WebSocketDelegate
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
@@ -86,7 +106,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
             isConnected = true
 
             print("websocket is connected: \(headers)")
-            showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
+            // showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
 
             // TODO: read password from app data
             let initData = InitData(username: "serj", password: "d21992b8787fdbb8032eddbb2d81bccc")
