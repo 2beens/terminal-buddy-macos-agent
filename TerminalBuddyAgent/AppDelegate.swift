@@ -12,14 +12,14 @@ import Starscream
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
-    var socket: WebSocket!
-    var isConnected = false
-    let server = WebSocketServer()
+    let serverPort = "8080"
+    let serverHost = "localhost"
+    
+    @State private var isConnected: Bool = false
+    private var socket: WebSocket!
+    private let server = WebSocketServer()
 
     var initData: InitData?
-
-    // taken from:
-    // https://medium.com/@acwrightdesign/creating-a-macos-menu-bar-application-using-swiftui-54572a5d5f87
 
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
@@ -29,10 +29,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
         var username: String
         var password: String
     }
+    
+    // TODO: add button to quit
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        let contentView = ContentView(isConnected: $isConnected)
 
         // Create the popover
         let popover = NSPopover()
@@ -79,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
     }
 
     func connect() {
-        let serverAddress = "ws://localhost:8080/connect"
+        let serverAddress = "ws://\(serverHost):\(serverPort)/connect"
         print("connecting to " + serverAddress)
         var request = URLRequest(url: URL(string: serverAddress)!)
         request.timeoutInterval = 4
@@ -103,7 +105,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected(let headers):
-            isConnected = true
+            self.isConnected = true
 
             print("websocket is connected: \(headers)")
             // showNotification(title: "Terminal Buddy", subtitle: "Connected to server")
@@ -118,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
                 print("sent an init message to server")
             }
         case .disconnected(let reason, let code):
-            isConnected = false
+            self.isConnected = false 
             showNotification(title: "Terminal Buddy", subtitle: "Disconnected from server")
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
