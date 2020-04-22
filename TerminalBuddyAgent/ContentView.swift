@@ -31,6 +31,12 @@ struct ContentView: View {
             }) {
                 Text("Test Bool Toggle")
             }
+
+            Button(action: {
+                exit(0)
+            }) {
+                Text("Exit")
+            }
         }
         .padding()
     }
