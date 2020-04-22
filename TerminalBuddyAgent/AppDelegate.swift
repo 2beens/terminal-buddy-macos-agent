@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, WebSocketDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(isConnected: $isConnected)
+        let contentView = ContentView(isConnected: $isConnected, testBool: true)
 
         // Create the popover
         let popover = NSPopover()
