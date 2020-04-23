@@ -55,11 +55,14 @@ class ConnectionManager: WebSocketDelegate {
     func connect() {
         let serverAddress = "ws://\(serverHost):\(serverPort)/connect"
         print("connecting to " + serverAddress)
+
         var request = URLRequest(url: URL(string: serverAddress)!)
         request.timeoutInterval = 4
+
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
+
         print("connect initiated ...")
     }
 
@@ -129,17 +132,6 @@ class ConnectionManager: WebSocketDelegate {
         }
     }
   
-//    // MARK: Disconnect Action
-//    @IBAction func disconnect(_ sender: UIBarButtonItem) {
-//        if isConnected {
-//            sender.title = "Connect"
-//            socket.disconnect()
-//        } else {
-//            sender.title = "Disconnect"
-//            socket.connect()
-//        }
-//    }
-    
     func showNotification(title: String, subtitle: String) -> Void {
         let notification = NSUserNotification()
         notification.deliveryDate = Date(timeIntervalSinceNow: 3)
