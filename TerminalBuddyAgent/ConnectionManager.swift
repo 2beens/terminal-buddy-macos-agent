@@ -20,18 +20,11 @@ class ConnectionManager: WebSocketDelegate {
     private var socket: WebSocket!
     private let server = WebSocketServer()
     
-    // TODO: should be in some other place (i guess)
-    struct InitData: Codable {
-        var username: String
-        var password: String
-    }
-    
     init() {
         self.serverStatus = ServerStatus()
     }
     
     func initialize() {
-        print("wsConect init")
         if !getInitData() {
             let alert = NSAlert()
             alert.messageText = "User data empty / corrupted"
@@ -69,7 +62,6 @@ class ConnectionManager: WebSocketDelegate {
         socket.connect()
         print("connect initiated ...")
     }
-    
 
     // MARK: - WebSocketDelegate
     func didReceive(event: WebSocketEvent, client: WebSocket) {
@@ -121,12 +113,7 @@ class ConnectionManager: WebSocketDelegate {
             print("websocket encountered an error")
         }
     }
-    
-//    // MARK: Write Text Action
-//    @IBAction func writeText(_ sender: UIBarButtonItem) {
-//        socket.write(string: "hello there!")
-//    }
-//
+  
 //    // MARK: Disconnect Action
 //    @IBAction func disconnect(_ sender: UIBarButtonItem) {
 //        if isConnected {

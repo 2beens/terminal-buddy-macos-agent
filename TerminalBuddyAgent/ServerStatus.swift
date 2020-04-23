@@ -9,5 +9,9 @@
 import Foundation
 
 class ServerStatus: ObservableObject {
-    @Published var connected: Bool = false
+    @Published var connected: Bool
+    
+    init(connected: Bool = false) {
+        self.connected = connected
+    }
 }

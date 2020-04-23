@@ -17,8 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var connManager: ConnectionManager = ConnectionManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.connManager.initialize()
-        
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView(serverStatus: self.connManager.serverStatus)
 
@@ -37,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(togglePopover(_:))
         }
         
+        self.connManager.initialize()
         self.connManager.connect()
     }
 

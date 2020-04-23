@@ -35,11 +35,11 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ContentView(isConnected: .constant(true), testBool: false)
-//            ContentView(isConnected: .constant(false), testBool: true)
-//        }
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ContentView(serverStatus: ServerStatus())
+            ContentView(serverStatus: ServerStatus(connected: true))
+        }
+    }
+}
