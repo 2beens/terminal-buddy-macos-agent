@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var connManager: ConnectionManager
+    @ObservedObject var serverStatus: ServerStatus
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -20,8 +20,8 @@ struct ContentView: View {
                 .font(.subheadline)
             HStack {
                 HStack {
-                    Text(self.connManager.connected ? "Connected" : "Disconnected")
-                    ServerStatusIndicator(isConnected: self.connManager.connected)
+                    Text(self.serverStatus.connected ? "Connected" : "Disconnected")
+                    ServerStatusIndicator(isConnected: self.serverStatus.connected)
                 }
                 .padding()
             }

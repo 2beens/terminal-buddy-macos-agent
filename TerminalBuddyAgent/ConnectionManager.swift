@@ -8,9 +8,10 @@
 
 import Foundation
 import Starscream
+import SwiftUI
 
-class ConnectionManager: ObservableObject, WebSocketDelegate {
-    @Published var connected: Bool = false
+class ConnectionManager: WebSocketDelegate {
+    @ObservedObject var serverStatus: ServerStatus
     
     let serverPort = "8080"
     let serverHost = "localhost"
@@ -23,6 +24,10 @@ class ConnectionManager: ObservableObject, WebSocketDelegate {
     struct InitData: Codable {
         var username: String
         var password: String
+    }
+    
+    init() {
+        self.serverStatus = ServerStatus()
     }
     
     func initialize() {
@@ -70,7 +75,7 @@ class ConnectionManager: ObservableObject, WebSocketDelegate {
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected(let headers):
-            self.connected = true
+            self.serverStatus.connected = true
             print("websocket is connected: \(headers)")
 
             let initDataJson = initData.convertToString!
@@ -79,7 +84,7 @@ class ConnectionManager: ObservableObject, WebSocketDelegate {
                 print("sent an init message to server")
             }
         case .disconnected(let reason, let code):
-            self.connected = false
+            self.serverStatus.connected = false
             showNotification(title: "Terminal Buddy", subtitle: "Disconnected from server")
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
@@ -99,10 +104,10 @@ class ConnectionManager: ObservableObject, WebSocketDelegate {
             break
         case .cancelled:
             print("received cancelled")
-            self.connected = false
+            self.serverStatus.connected = false
         case .error(let error):
             print("received error event")
-            self.connected = false
+            self.serverStatus.connected = false
             handleError(error)
         }
     }

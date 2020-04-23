@@ -14,14 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
     
-    @ObservedObject var connManager: ConnectionManager = ConnectionManager()
+    var connManager: ConnectionManager = ConnectionManager()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.connManager = ConnectionManager()
         self.connManager.initialize()
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(connManager: self.connManager)
+        let contentView = ContentView(serverStatus: self.connManager.serverStatus)
 
         // Create the popover
         let popover = NSPopover()
