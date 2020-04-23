@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var serverStatus: ServerStatus
+    var connectWsFunc: () -> Void
+    var disconnectWsFunc: () -> Void
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -20,8 +22,17 @@ struct ContentView: View {
                 .font(.subheadline)
             HStack {
                 HStack {
-                    Text(self.serverStatus.connected ? "Connected" : "Disconnected")
+                    Text("Status")
                     ServerStatusIndicator(isConnected: self.serverStatus.connected)
+                    Button(action: {
+                        if self.serverStatus.connected  {
+                            self.disconnectWsFunc()
+                        } else {
+                            self.connectWsFunc()
+                        }
+                    }) {
+                        Text(self.serverStatus.connected ? "Disconnect" : "Connect")
+                    }
                 }
                 .padding()
             }
@@ -38,8 +49,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(serverStatus: ServerStatus())
-            ContentView(serverStatus: ServerStatus(connected: true))
+            ContentView(serverStatus: ServerStatus(), connectWsFunc: {}, disconnectWsFunc:{})
+            ContentView(serverStatus: ServerStatus(connected: true), connectWsFunc: {}, disconnectWsFunc:{})
         }
     }
 }

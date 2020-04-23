@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(serverStatus: self.connManager.serverStatus)
+        let contentView = ContentView(serverStatus: self.connManager.serverStatus, connectWsFunc: self.connect, disconnectWsFunc: self.disconnect)
 
         // Create the popover
         let popover = NSPopover()
@@ -37,6 +37,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.connManager.initialize()
         self.connManager.connect()
+    }
+
+    func connect() {
+        self.connManager.connect()
+    }
+
+    func disconnect() {
+        self.connManager.disconnect()
     }
 
     @objc func togglePopover(_ sender: AnyObject?) {

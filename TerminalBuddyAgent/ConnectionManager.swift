@@ -63,6 +63,21 @@ class ConnectionManager: WebSocketDelegate {
         print("connect initiated ...")
     }
 
+    // TODO: connect and disconnect should not be fire-and-forget
+    // maybe swift has some promise or something ? to wait for actual
+    // disconnect / connect
+
+    func disconnect() {
+        if !self.serverStatus.connected {
+            print("error, already disconnected")
+            return
+        }
+
+        self.socket.disconnect()
+        self.serverStatus.connected = false
+        print("connection disconnected")
+    }
+
     // MARK: - WebSocketDelegate
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
