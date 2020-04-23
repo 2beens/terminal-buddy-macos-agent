@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Binding var isConnected: Bool
+    @ObservedObject var serverStatus: ServerStatus
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -20,10 +20,15 @@ struct ContentView: View {
                 .font(.subheadline)
             HStack {
                 HStack {
-                    Text(isConnected ? "Connected" : "Disconnected")
-                    ServerStatusIndicator(isConnected: $isConnected)
+                    Text(self.serverStatus.connected ? "Connected" : "Disconnected")
+                    ServerStatusIndicator(isConnected: self.serverStatus.connected)
                 }
                 .padding()
+            }
+            Button(action: {
+                exit(0)
+            }) {
+                Text("Exit")
             }
         }
         .padding()
@@ -33,8 +38,8 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView(isConnected: .constant(true))
-            ContentView(isConnected: .constant(false))
+            ContentView(serverStatus: ServerStatus())
+            ContentView(serverStatus: ServerStatus(connected: true))
         }
     }
 }
