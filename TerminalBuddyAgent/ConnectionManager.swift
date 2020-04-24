@@ -53,6 +53,11 @@ class ConnectionManager: WebSocketDelegate {
     }
 
     func connect() {
+        if self.serverStatus.connected {
+            print("error, already connected")
+            return
+        }
+
         let serverAddress = "ws://\(serverHost):\(serverPort)/connect"
         print("connecting to " + serverAddress)
 
@@ -66,10 +71,6 @@ class ConnectionManager: WebSocketDelegate {
         print("connect initiated ...")
     }
 
-    // TODO: connect and disconnect should not be fire-and-forget
-    // maybe swift has some promise or something ? to wait for actual
-    // disconnect / connect
-
     func disconnect() {
         if !self.serverStatus.connected {
             print("error, already disconnected")
@@ -77,8 +78,7 @@ class ConnectionManager: WebSocketDelegate {
         }
 
         self.socket.disconnect()
-        self.serverStatus.connected = false
-        print("connection disconnected")
+        print("disconnect initiated ...")
     }
 
     // MARK: - WebSocketDelegate
