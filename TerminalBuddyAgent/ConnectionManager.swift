@@ -15,7 +15,7 @@ class ConnectionManager: WebSocketDelegate {
     
     let serverPort = "8080"
     let serverHost = "localhost"
-    var initData: InitData?
+    var userCredentials: UserCredentials?
     
     private var socket: WebSocket!
     private let server = WebSocketServer()
@@ -25,7 +25,7 @@ class ConnectionManager: WebSocketDelegate {
     }
     
     func initialize() {
-        if !getInitData() {
+        if !getUserCredentials() {
             let alert = NSAlert()
             alert.messageText = "User data empty / corrupted"
             alert.informativeText = """
@@ -37,12 +37,12 @@ class ConnectionManager: WebSocketDelegate {
         }
     }
     
-    func getInitData() -> Bool {
+    func getUserCredentials() -> Bool {
         do {
             let userDataStr = try String(contentsOfFile: "/Users/serj/Library/Preferences/terminal-buddy/term-buddy-settings")
             let userData = userDataStr.components(separatedBy: "::")
             if userData.count == 2 {
-                initData = InitData(username: userData[0], password: userData[1])
+                self.userCredentials = UserCredentials(username: userData[0], password: userData[1])
                 return true
             }
         }
@@ -88,9 +88,9 @@ class ConnectionManager: WebSocketDelegate {
             self.serverStatus.connected = true
             print("websocket is connected: \(headers)")
 
-            let initDataJson = initData.convertToString!
-            print("sending init data: " + initDataJson)
-            socket.write(string: initDataJson) {
+            let userCredentialsJson = self.userCredentials.convertToString!
+            print("sending init data: " + userCredentialsJson)
+            socket.write(string: userCredentialsJson) {
                 print("sent an init message to server")
             }
         case .disconnected(let reason, let code):
@@ -99,7 +99,7 @@ class ConnectionManager: WebSocketDelegate {
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
             print("Received text: \(string)")
-            showNotification(title: "term buddy test", subtitle: string)
+            showNotification(title: "Terminal Buddy Notification", subtitle: string)
         case .binary(let data):
             print("Received data: \(data.count)")
         case .ping(_):

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523CEDCE24545062004A9CF2 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CEDCD24545062004A9CF2 /* UserCredentials.swift */; };
 		524D3267244F769800CA76C6 /* ServerStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D3266244F769800CA76C6 /* ServerStatusIndicator.swift */; };
 		52555AE6243522CD006E38C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52555AE5243522CD006E38C8 /* AppDelegate.swift */; };
 		52555AE8243522CD006E38C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52555AE7243522CD006E38C8 /* ContentView.swift */; };
@@ -15,13 +16,13 @@
 		52555AF0243522D0006E38C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52555AEE243522D0006E38C8 /* Main.storyboard */; };
 		52D825192450BE0300FC0B66 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D825182450BE0300FC0B66 /* ConnectionManager.swift */; };
 		52D8251B2451774A00FC0B66 /* ServerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8251A2451774A00FC0B66 /* ServerStatus.swift */; };
-		52D8251D24517B9000FC0B66 /* InitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8251C24517B9000FC0B66 /* InitData.swift */; };
 		52EE58FB244C868A00EC6964 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE58FA244C868A00EC6964 /* Extensions.swift */; };
 		7521595C82671C02781C2FEA /* Pods_TerminalBuddyAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TerminalBuddyAgent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		523CEDCD24545062004A9CF2 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		524D3266244F769800CA76C6 /* ServerStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatusIndicator.swift; sourceTree = "<group>"; };
 		52555AE2243522CD006E38C8 /* TerminalBuddyAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalBuddyAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52555AE5243522CD006E38C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		52555AF2243522D0006E38C8 /* TerminalBuddyAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TerminalBuddyAgent.entitlements; sourceTree = "<group>"; };
 		52D825182450BE0300FC0B66 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		52D8251A2451774A00FC0B66 /* ServerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatus.swift; sourceTree = "<group>"; };
-		52D8251C24517B9000FC0B66 /* InitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitData.swift; sourceTree = "<group>"; };
 		52EE58FA244C868A00EC6964 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7C2568FADDA63565FFEC0C24 /* Pods-TerminalBuddyAgent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerminalBuddyAgent.release.xcconfig"; path = "Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent.release.xcconfig"; sourceTree = "<group>"; };
 		B9BF9B4BD9D04B70CA7C8D06 /* Pods-TerminalBuddyAgent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TerminalBuddyAgent.debug.xcconfig"; path = "Target Support Files/Pods-TerminalBuddyAgent/Pods-TerminalBuddyAgent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 				52EE58FA244C868A00EC6964 /* Extensions.swift */,
 				52D825182450BE0300FC0B66 /* ConnectionManager.swift */,
 				52D8251A2451774A00FC0B66 /* ServerStatus.swift */,
-				52D8251C24517B9000FC0B66 /* InitData.swift */,
+				523CEDCD24545062004A9CF2 /* UserCredentials.swift */,
 			);
 			path = TerminalBuddyAgent;
 			sourceTree = "<group>";
@@ -231,9 +231,9 @@
 				52D8251B2451774A00FC0B66 /* ServerStatus.swift in Sources */,
 				52D825192450BE0300FC0B66 /* ConnectionManager.swift in Sources */,
 				524D3267244F769800CA76C6 /* ServerStatusIndicator.swift in Sources */,
-				52D8251D24517B9000FC0B66 /* InitData.swift in Sources */,
 				52555AE8243522CD006E38C8 /* ContentView.swift in Sources */,
 				52EE58FB244C868A00EC6964 /* Extensions.swift in Sources */,
+				523CEDCE24545062004A9CF2 /* UserCredentials.swift in Sources */,
 				52555AE6243522CD006E38C8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
