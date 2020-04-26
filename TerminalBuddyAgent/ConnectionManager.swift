@@ -97,9 +97,8 @@ class ConnectionManager: WebSocketDelegate {
             self.serverStatus.connected = false
             showNotification(title: "Terminal Buddy", subtitle: "Disconnected from server")
             print("websocket is disconnected: \(reason) with code: \(code)")
-        case .text(let string):
-            print("Received text: \(string)")
-            showNotification(title: "Terminal Buddy Notification", subtitle: string)
+        case .text(let receivedText):
+            self.handleIncomingMessage(incomingMessage: receivedText)
         case .binary(let data):
             print("Received data: \(data.count)")
         case .ping(_):
@@ -122,6 +121,26 @@ class ConnectionManager: WebSocketDelegate {
         }
     }
     
+    func handleIncomingMessage(incomingMessage: String) -> Void {
+        print("Received text: \(incomingMessage)")
+
+        if !isJsonValid(jsonString: incomingMessage) {
+            return
+        }
+
+        // get message and show it
+        let receivedData = incomingMessage.data(using: .utf8)!
+        let reminderMessage = try! JSONDecoder().decode(ReminderMessage.self, from: receivedData)
+        showNotification(title: "Terminal Buddy Notification", subtitle: reminderMessage.message)
+
+        // send ack message
+        let messageForServer = AgentMessage(userCredentials: self.userCredentials!, message: "ack", reminderId: reminderMessage.id)
+        print(messageForServer)
+        socket.write(data: messageForServer.convertToString!.data(using: .utf8)!, completion: {
+            print("sent ACK to server")
+        })
+    }
+
     func handleError(_ error: Error?) {
         if let e = error as? WSError {
             print("websocket encountered an error: \(e.message)")
@@ -139,5 +158,17 @@ class ConnectionManager: WebSocketDelegate {
         notification.subtitle = subtitle
         notification.soundName = NSUserNotificationDefaultSoundName
         NSUserNotificationCenter.default.scheduleNotification(notification)
+    }
+
+    func isJsonValid(jsonString: String) -> Bool {
+        if let jsonDataToVerify = jsonString.data(using: String.Encoding.utf8) {
+            do {
+                _ = try JSONSerialization.jsonObject(with: jsonDataToVerify)
+                return true
+            } catch {
+                // ignored
+            }
+        }
+        return false
     }
 }

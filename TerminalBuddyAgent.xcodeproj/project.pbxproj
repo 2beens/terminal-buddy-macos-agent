@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		523CEDCE24545062004A9CF2 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CEDCD24545062004A9CF2 /* UserCredentials.swift */; };
+		523CEDD024545212004A9CF2 /* AgentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CEDCF24545212004A9CF2 /* AgentMessage.swift */; };
+		523CEDD224558C76004A9CF2 /* ReminderMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CEDD124558C76004A9CF2 /* ReminderMessage.swift */; };
 		524D3267244F769800CA76C6 /* ServerStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D3266244F769800CA76C6 /* ServerStatusIndicator.swift */; };
 		52555AE6243522CD006E38C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52555AE5243522CD006E38C8 /* AppDelegate.swift */; };
 		52555AE8243522CD006E38C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52555AE7243522CD006E38C8 /* ContentView.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		2FF06B3C8B2C91BADE877AE0 /* Pods_TerminalBuddyAgent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TerminalBuddyAgent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		523CEDCD24545062004A9CF2 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
+		523CEDCF24545212004A9CF2 /* AgentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentMessage.swift; sourceTree = "<group>"; };
+		523CEDD124558C76004A9CF2 /* ReminderMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderMessage.swift; sourceTree = "<group>"; };
 		524D3266244F769800CA76C6 /* ServerStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatusIndicator.swift; sourceTree = "<group>"; };
 		52555AE2243522CD006E38C8 /* TerminalBuddyAgent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalBuddyAgent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52555AE5243522CD006E38C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				52D825182450BE0300FC0B66 /* ConnectionManager.swift */,
 				52D8251A2451774A00FC0B66 /* ServerStatus.swift */,
 				523CEDCD24545062004A9CF2 /* UserCredentials.swift */,
+				523CEDCF24545212004A9CF2 /* AgentMessage.swift */,
+				523CEDD124558C76004A9CF2 /* ReminderMessage.swift */,
 			);
 			path = TerminalBuddyAgent;
 			sourceTree = "<group>";
@@ -228,7 +234,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523CEDD224558C76004A9CF2 /* ReminderMessage.swift in Sources */,
 				52D8251B2451774A00FC0B66 /* ServerStatus.swift in Sources */,
+				523CEDD024545212004A9CF2 /* AgentMessage.swift in Sources */,
 				52D825192450BE0300FC0B66 /* ConnectionManager.swift in Sources */,
 				524D3267244F769800CA76C6 /* ServerStatusIndicator.swift in Sources */,
 				52555AE8243522CD006E38C8 /* ContentView.swift in Sources */,
